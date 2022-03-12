@@ -16,7 +16,7 @@ job('NodeJS Docker example') {
     steps {
         dockerBuildAndPublish {
             repositoryName('7517/jenkins-docker')
-            tag('${GIT_REVISION,length=9}_Date().format('yyyy-MM-dd hh-mm')')
+            tag('${GIT_REVISION,length=9}'Date().format('yyyy-MM-dd hh-mm')')
             registryCredentials('dockerhub')
             forcePull(false)
             forceTag(false)
