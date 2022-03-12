@@ -18,7 +18,6 @@ job('NodeJS Docker example') {
         dockerBuildAndPublish {
             repositoryName('7517/jenkins-docker')
             tag('${GIT_REVISION,length=9}')
-            tag('${BUILD_TIMESTAMP} ')
             registryCredentials('dockerhub')
             forcePull(false)
             forceTag(false)
