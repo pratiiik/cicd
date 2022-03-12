@@ -1,7 +1,5 @@
 job('NodeJS Docker example') {
    
-   def date = String.format('%tF %<tH:%<tM', java.time.LocalDateTime.now())
-
     scm {
         git('git://github.com/pratiiik/myonly.git') {  node -> // is hudson.plugins.git.GitSCM
             node / gitConfigName('pratiiik')
@@ -16,6 +14,7 @@ job('NodeJS Docker example') {
                          // Manage Jenkins -> Configure Tools -> NodeJS Installations -> Name
     }
     steps {
+        def date = String.format('%tF %<tH:%<tM', java.time.LocalDateTime.now())
         dockerBuildAndPublish {
             repositoryName('7517/jenkins-docker')
             tag('${GIT_REVISION,length=9}_${date}')
