@@ -14,10 +14,11 @@ job('NodeJS Docker example') {
                          // Manage Jenkins -> Configure Tools -> NodeJS Installations -> Name
     }
     steps {
-        def date = String.format('%tF %<tH:%<tM', java.time.LocalDateTime.now())
+        
         dockerBuildAndPublish {
             repositoryName('7517/jenkins-docker')
-            tag('${GIT_REVISION,length=9}_${date}')
+            tag('${GIT_REVISION,length=9}')
+            push('${BUILD_TIMESTAMP} ')
             registryCredentials('dockerhub')
             forcePull(false)
             forceTag(false)
