@@ -1,4 +1,6 @@
 job('NodeJS Docker example') {
+   
+   def date = String.format('%tF %<tH:%<tM', java.time.LocalDateTime.now())
 
     scm {
         git('git://github.com/pratiiik/myonly.git') {  node -> // is hudson.plugins.git.GitSCM
@@ -16,7 +18,7 @@ job('NodeJS Docker example') {
     steps {
         dockerBuildAndPublish {
             repositoryName('7517/jenkins-docker')
-            tag('${GIT_REVISION,length=9}'Date().format('yyyy-MM-dd hh-mm')')
+            tag('${GIT_REVISION,length=9}_${date}')
             registryCredentials('dockerhub')
             forcePull(false)
             forceTag(false)
